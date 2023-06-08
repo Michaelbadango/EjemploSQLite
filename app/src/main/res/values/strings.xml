@@ -1,0 +1,7 @@
+<resources>
+    <string name="txt_cedula">Cedula</string>
+    <string name="txt_nombre">Nombre</string>
+    <string name="txt_apellido">Apellido</string>
+    <string name="txt_direccion">Direccion</string>
+    <string name="app_name">Enviar</string>
+</resources>
