@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void eliminarRegistro(View view) {
+    public void eliminar(View view) {
         BDHelper admin = new BDHelper(this, "Registro.db", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
 
@@ -67,8 +67,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void modificar(View view) {
+        BDHelper admin = new BDHelper(this, "Registro.db", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
 
+        String id = txt_id.getText().toString();
+        String nombre = txt_nombre.getText().toString();
+        String apellido = txt_apellido.getText().toString();
+        String direccion = txt_direccion.getText().toString();
 
+        String tabla = "t_usuario";
+        String campoID = "usu_id";
+        String whereClause = campoID + " = ?";
+        String[] whereArgs = { id };
+
+        ContentValues valores = new ContentValues();
+        valores.put("usu_nombre", nombre);
+        valores.put("usu_apellido", apellido);
+        valores.put("usu_direccion", direccion);
+
+        int registrosActualizados = bd.update(tabla, valores, whereClause, whereArgs);
+        if (registrosActualizados > 0) {
+            Toast.makeText(this, "Registro modificado exitosamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "No se encontró el registro a modificar", Toast.LENGTH_SHORT).show();
+        }
+
+        bd.close();
+    }
 
 
 
